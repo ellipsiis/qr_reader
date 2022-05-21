@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/purple_blue_degree"
+    android:background="@drawable/greenbackground"
     tools:context=".Splash">
 
     <ImageView
@@ -16,7 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.37"
-        app:srcCompat="@drawable/qrreader_logo" />
+        app:srcCompat="@drawable/qrreader_logo"
+        android:contentDescription="@string/content_description"/>
 
     <ImageView
         android:id="@+id/imageView3"
@@ -27,5 +28,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.57"
-        app:srcCompat="@drawable/version" />
+        app:srcCompat="@drawable/version"
+        android:contentDescription="@string/content_description"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
