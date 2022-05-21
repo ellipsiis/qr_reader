@@ -62,9 +62,23 @@ class QR : AppCompatActivity(), ZXingScannerView.ResultHandler {
         Log.d("QR_LEIDO",scanResult!!)
 
         try{
+            val list = scanResult.split(":")
+            Log.d("QR_LEIDO","${list}")
+            var smsIntent = Intent(Intent.ACTION_VIEW)
+            smsIntent.setData(Uri.parse("smsto:"+list[1]))
+            smsIntent.putExtra("sms_body",list[2])
+            startActivity(smsIntent)
+            finish()
+
+        }catch(e: URISyntaxException)
+        {
+
+        }
+
+        try{
 //            for url
-            val url = URL(scanResult)
-            val i = Intent(Intent.ACTION_VIEW)
+            var url = URL(scanResult)
+            var i = Intent(Intent.ACTION_VIEW)
             i.setData(Uri.parse(scanResult))
             startActivity(i)
             finish()
@@ -95,7 +109,7 @@ class QR : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
 
 
-            val intent = Intent(Intent.ACTION_INSERT).apply {
+            var intent = Intent(Intent.ACTION_INSERT).apply {
                 type = ContactsContract.Contacts.CONTENT_TYPE
                 putExtra(ContactsContract.Intents.Insert.PHONETIC_NAME, nkValue)
                 putExtra(ContactsContract.Intents.Insert.NAME, nValue)
@@ -106,7 +120,7 @@ class QR : AppCompatActivity(), ZXingScannerView.ResultHandler {
             }
             startActivity(intent)
             finish()
-        }catch(e:MalformedURLException){
+        }catch(e:URISyntaxException){
             AlertDialog.Builder(this@QR)
 //                .setTitle(getString(R.string.error_title_alertdialog))
                 .setTitle("VCARD")
